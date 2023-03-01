@@ -15,6 +15,8 @@ public class PhysicalButton : MonoBehaviour
     [SerializeField] private UnityEvent onReleased;
     [SerializeField] private AudioSource pressedSound;
     [SerializeField] private AudioSource releaseSound;
+    [SerializeField] private Material pressedColor;
+    [SerializeField] private Material releasedColor;
 
     private bool isPressed;
     private bool prevPressedState;
@@ -42,7 +44,7 @@ public class PhysicalButton : MonoBehaviour
         buttonTop.transform.localEulerAngles = Vector3.zero;
 
         if (buttonTop.localPosition.y >= 0)
-            buttonTop.transform.position = new Vector3(buttonUpperLimit.position.x, buttonUpperLimit.position.y, buttonLowerLimit.position.z);
+            buttonTop.transform.position = new Vector3(buttonUpperLimit.position.x, buttonUpperLimit.position.y, buttonUpperLimit.position.z);
         else
             buttonTop.GetComponent<Rigidbody>().AddForce(buttonTop.transform.up * force * Time.fixedDeltaTime);
 
@@ -63,11 +65,13 @@ public class PhysicalButton : MonoBehaviour
     private void Pressed()
     {
         prevPressedState = isPressed;
+        buttonTop.GetComponent<Renderer>().material = pressedColor;
         onPressed.Invoke();
     }
     private void Released()
     {
         prevPressedState = isPressed;
+        buttonTop.GetComponent<Renderer>().material = releasedColor;
         onReleased.Invoke();
     }
 
