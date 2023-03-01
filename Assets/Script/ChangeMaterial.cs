@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ChangeMaterial : MonoBehaviour
 {
-    [SerializeField] private Button button;
+
     [SerializeField] private List<Material> materials = new List<Material>();
     private int index = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        button.onButtonPressed += ChangeTexture;
+
         ChangeTexture();
     }
 
-    private void ChangeTexture()
+    public void ChangeTexture()
     {
         
         foreach(Transform child in transform)
