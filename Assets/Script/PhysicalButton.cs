@@ -30,11 +30,13 @@ public class PhysicalButton : MonoBehaviour
         {
             Vector3 saveAngle = transform.eulerAngles;
             transform.eulerAngles = Vector3.zero;
-            upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+             //upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+            upperLowerDiff = Vector3.Distance(buttonUpperLimit.position, buttonLowerLimit.position);
             transform.eulerAngles = saveAngle;
         }
         else
-            upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+            //upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+           upperLowerDiff = Vector3.Distance(buttonUpperLimit.position, buttonLowerLimit.position);
     }
 
     // Update is called once per frame
@@ -46,16 +48,21 @@ public class PhysicalButton : MonoBehaviour
         if (buttonTop.localPosition.y >= 0)
             buttonTop.transform.position = new Vector3(buttonUpperLimit.position.x, buttonUpperLimit.position.y, buttonUpperLimit.position.z);
         else
-            buttonTop.GetComponent<Rigidbody>().AddForce(buttonTop.transform.up * force * Time.fixedDeltaTime);
+            buttonTop.GetComponent<Rigidbody>().AddForce(buttonTop.transform.up * force * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
         if (buttonTop.localPosition.y <= buttonLowerLimit.localPosition.y)
             buttonTop.transform.position = new Vector3(buttonLowerLimit.position.x, buttonLowerLimit.position.y, buttonLowerLimit.position.z);
 
         if (Vector3.Distance(buttonTop.position, buttonLowerLimit.position) < upperLowerDiff * threshHold)
+        {
             isPressed = true;
+
+        }
         else
             isPressed = false;
 
+        Debug.Log(Vector3.Distance(buttonTop.position, buttonLowerLimit.position) + "---" + upperLowerDiff  + "---" + Vector3.Distance(buttonTop.position, buttonLowerLimit.position) / upperLowerDiff );
+        
         if (isPressed && prevPressedState != isPressed)
             Pressed();
         if (!isPressed && prevPressedState != isPressed)
