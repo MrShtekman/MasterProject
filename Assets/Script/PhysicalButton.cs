@@ -61,7 +61,7 @@ public class PhysicalButton : MonoBehaviour
         else
             isPressed = false;
 
-        Debug.Log(Vector3.Distance(buttonTop.position, buttonLowerLimit.position) + "---" + upperLowerDiff  + "---" + Vector3.Distance(buttonTop.position, buttonLowerLimit.position) / upperLowerDiff );
+
         
         if (isPressed && prevPressedState != isPressed)
             Pressed();
