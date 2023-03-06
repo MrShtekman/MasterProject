@@ -47,7 +47,6 @@ public class Line : MonoBehaviour
 
             GradientColorKey colorkey = new GradientColorKey(Color.Lerp(color1, color2, test), percentage);
             gradientColorKeys[i] = colorkey;
-            Debug.Log(test);
 
         }
 

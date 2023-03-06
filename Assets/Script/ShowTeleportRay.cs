@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ShowRay : MonoBehaviour
+public class ShowTeleportRay : MonoBehaviour
 {
     [SerializeField] private GameObject reticle;
     [SerializeField] private XRInteractorLineVisual teleportRay;
