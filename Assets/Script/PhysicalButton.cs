@@ -22,26 +22,27 @@ public class PhysicalButton : MonoBehaviour
     private bool prevPressedState;
     private float upperLowerDiff;
 
-    // Start is called before the first frame update
     void Start()
     {
         Physics.IgnoreCollision(GetComponent<Collider>(), buttonTop.GetComponent<Collider>());
+        // If its tilted then make it vertical then calcuate the height difference.
         if (transform.eulerAngles != Vector3.zero)
         {
             Vector3 saveAngle = transform.eulerAngles;
             transform.eulerAngles = Vector3.zero;
-             //upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+
             upperLowerDiff = Vector3.Distance(buttonUpperLimit.position, buttonLowerLimit.position);
             transform.eulerAngles = saveAngle;
         }
         else
-            //upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
+
            upperLowerDiff = Vector3.Distance(buttonUpperLimit.position, buttonLowerLimit.position);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        //No rotation and only movement on y-axis
         buttonTop.transform.localPosition = new Vector3(0, buttonTop.transform.localPosition.y, 0);
         buttonTop.transform.localEulerAngles = Vector3.zero;
 
