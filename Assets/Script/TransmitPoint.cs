@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TransmitPoint : MonoBehaviour
 {
+    private Transform originalOwner;
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalOwner = transform.parent;
     }
 
     // Update is called once per frame
@@ -21,8 +22,12 @@ public class TransmitPoint : MonoBehaviour
         if (other.gameObject.CompareTag("Receiver"))
         {
             transform.position = other.transform.position;
-
-            Debug.Log("trigger!");
+            transform.parent = other.transform;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        transform.parent = originalOwner;
     }
 }
