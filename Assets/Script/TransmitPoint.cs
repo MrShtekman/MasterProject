@@ -5,7 +5,10 @@ using UnityEngine;
 public class TransmitPoint : MonoBehaviour
 {
     private Transform originalOwner;
-    // Start is called before the first frame update
+    private int number;
+    private string character;
+    private bool boolean;
+    
     void Start()
     {
         originalOwner = transform.parent;
@@ -19,10 +22,10 @@ public class TransmitPoint : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Receiver"))
+        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
         {
-            transform.position = other.transform.position;
             transform.parent = other.transform;
+            transform.position = other.transform.position;
         }
     }
 

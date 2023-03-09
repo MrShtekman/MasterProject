@@ -23,5 +23,6 @@ public class ChangeText : MonoBehaviour
     {
         GetComponent<TextMeshPro>().text = symbols[index];
         index = ((index + 1) <symbols.Count) ? ++index : 0;
+
     }
 }

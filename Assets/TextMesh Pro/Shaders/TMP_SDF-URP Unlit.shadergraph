@@ -7938,15 +7938,15 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.SamplerStateShaderProperty",
     "m_ObjectId": "a4ad98d8828c424384229c344ebe2ed0",
     "m_Guid": {
         "m_GuidSerialized": "f98fc1a2-bb81-4bd1-a207-23d3a90d518e"
     },
     "m_Name": "SamplerState",
-    "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "SamplerState_Linear_Clamp",
+    "m_DefaultReferenceName": "SamplerState_a4ad98d8828c424384229c344ebe2ed0",
+    "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": false,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
