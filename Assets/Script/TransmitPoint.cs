@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class TransmitPoint : MonoBehaviour
 {
-    private Transform originalOwner;
+    private Transform parentNode;
+    private Transform originalPos;
     private int number;
     private string character;
     private bool boolean;
     
     void Start()
     {
-        originalOwner = transform.parent;
+        originalPos = transform.parent;
+        parentNode = originalPos.parent;
+
+        if (parentNode.CompareTag("NumberNode"))
+            number = parentNode.GetComponent<NumberNode>().value;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerStay(Collider other)
     {
@@ -26,11 +27,23 @@ public class TransmitPoint : MonoBehaviour
         {
             transform.parent = other.transform;
             transform.position = other.transform.position;
+
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
+        {
+            CalculationNode cn = other.transform.parent.parent.GetComponent<CalculationNode>();
+
+            cn.ConnectNodes(parentNode, other.transform, number);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        transform.parent = originalOwner;
+        transform.parent = originalPos;
+        
     }
 }

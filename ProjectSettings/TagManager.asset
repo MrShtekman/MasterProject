@@ -9,6 +9,7 @@ TagManager:
   - ReceiveNumber
   - ReceiveBool
   - ReceiveCharacter
+  - NumberNode
   layers:
   - Default
   - TransparentFX
