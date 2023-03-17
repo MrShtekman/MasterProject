@@ -7,7 +7,6 @@ public class TransmitPoint : MonoBehaviour
     private Transform parentNode;
     private Transform originalPos;
     private int number;
-    private string character;
     private bool boolean;
     
     void Start()
@@ -15,8 +14,7 @@ public class TransmitPoint : MonoBehaviour
         originalPos = transform.parent;
         parentNode = originalPos.parent;
 
-        if (parentNode.CompareTag("NumberNode"))
-            number = parentNode.GetComponent<NumberNode>().value;
+        UpdateValue();
     }
 
    
@@ -33,17 +31,29 @@ public class TransmitPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
+        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveBool"))
         {
             CalculationNode cn = other.transform.parent.parent.GetComponent<CalculationNode>();
-
-            cn.ConnectNodes(parentNode, other.transform, number);
+            UpdateValue();
+            cn.ConnectNode(parentNode, other.transform, number);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        transform.parent = originalPos;
-        
+        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
+        {
+            CalculationNode cn = other.transform.parent.parent.GetComponent<CalculationNode>();
+
+            cn.DisconnectNode(parentNode, other.transform, 0);
+        }
+        transform.parent = originalPos;  
+    }
+
+    private void UpdateValue()
+    {
+        if (parentNode.CompareTag("NumberNode") || parentNode.CompareTag("CalculationNode"))
+            number = parentNode.GetComponent<NumberNode>().value;
+        //else if(parentNode.CompareTag("BooleanNode"))
     }
 }

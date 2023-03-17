@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class NumberNode : MonoBehaviour
 {
-    [SerializeField] public int value { get; private set; }
+    public int value = 0;
     [SerializeField] private GameObject display;
     [SerializeField] private GameObject transmitter;
 
     public delegate void NodeAction(int number);
     public event NodeAction OnNumberChanged;
+
+    public void Start()
+    {
+        display.GetComponent<TextMeshPro>().text = value.ToString();
+    }
     public void ChangeNumber(int addNumber)
     {
         value += addNumber;

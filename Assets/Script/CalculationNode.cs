@@ -21,7 +21,7 @@ public class CalculationNode : MonoBehaviour
     }
 
 
-    public void ConnectNodes(Transform otherNode, Transform _receiver, int initialValue)
+    public void ConnectNode(Transform otherNode, Transform _receiver, int initialValue)
     {
         if (_receiver == receiver1)
         {
@@ -29,15 +29,27 @@ public class CalculationNode : MonoBehaviour
             numberNode1.GetComponent<NumberNode>().OnNumberChanged += UpdateInput1;
             UpdateInput1(initialValue);
         }
-        else if(_receiver == receiver2)
+        else if (_receiver == receiver2)
         {
             numberNode2 = otherNode;
-            
+
             numberNode2.GetComponent<NumberNode>().OnNumberChanged += UpdateInput2;
             UpdateInput2(initialValue);
         }
-        
+    }
 
+    public void DisconnectNode(Transform otherNode, Transform _receiver, int value)
+    {
+        if (numberNode1 == otherNode)
+        {           
+            numberNode1.GetComponent<NumberNode>().OnNumberChanged -= UpdateInput1;
+            UpdateInput1(value);
+        }
+        else if (numberNode2 == otherNode)
+        {       
+            numberNode2.GetComponent<NumberNode>().OnNumberChanged -= UpdateInput2;
+            UpdateInput2(value);
+        }
     }
 
     public void UpdateInput1(int value)
