@@ -16,6 +16,8 @@ public class NumberNode : MonoBehaviour
     {
         display.GetComponent<TextMeshPro>().text = value.ToString();
     }
+
+    //Change the value and invoke the event
     public void ChangeNumber(int addNumber)
     {
         value += addNumber;

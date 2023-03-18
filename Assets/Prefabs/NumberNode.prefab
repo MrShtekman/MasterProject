@@ -624,6 +624,7 @@ MonoBehaviour:
   endPoint: {fileID: 8766539182554297223}
   color1: {r: 1, g: 1, b: 1, a: 0}
   color2: {r: 0, g: 0, b: 0, a: 0}
+  errorColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!120 &8766539181049289342
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1981,7 +1982,7 @@ GameObject:
   - component: {fileID: 8766539182554297222}
   m_Layer: 0
   m_Name: TransmitPoint2
-  m_TagString: Untagged
+  m_TagString: Number
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2205,6 +2206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4deb374fc1675b043946a67ba0641d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 8766539181049289343}
 --- !u!1001 &8766539180893583343
 PrefabInstance:
   m_ObjectHideFlags: 0

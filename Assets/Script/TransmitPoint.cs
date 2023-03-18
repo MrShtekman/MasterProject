@@ -4,56 +4,92 @@ using UnityEngine;
 
 public class TransmitPoint : MonoBehaviour
 {
+    [SerializeField] private Transform line;
     private Transform parentNode;
     private Transform originalPos;
     private int number;
     private bool boolean;
-    
+
     void Start()
     {
         originalPos = transform.parent;
         parentNode = originalPos.parent;
 
-        UpdateValue();
+        //GetValueFromParent();
     }
 
-   
+
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
+        var targetReceiver = other.transform;
+        if (CheckReceiverTag(targetReceiver))
         {
-            transform.parent = other.transform;
-            transform.position = other.transform.position;
+            transform.parent = targetReceiver;
+            transform.position = targetReceiver.position;
 
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveBool"))
+        var targetReceiver = other.transform;
+        if (CheckReceiverTag(targetReceiver))
         {
             CalculationNode cn = other.transform.parent.parent.GetComponent<CalculationNode>();
-            UpdateValue();
+            GetValueFromParent();
             cn.ConnectNode(parentNode, other.transform, number);
+            ChangeLineColor(targetReceiver);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("ReceiveNumber") || other.gameObject.CompareTag("ReceiveCharacter") || other.gameObject.CompareTag("ReceiveBool"))
+        var targetReceiver = other.transform;
+        if (CheckReceiverTag(targetReceiver))
         {
             CalculationNode cn = other.transform.parent.parent.GetComponent<CalculationNode>();
-
             cn.DisconnectNode(parentNode, other.transform, 0);
+            ChangeLineColor(targetReceiver);
         }
-        transform.parent = originalPos;  
+        transform.parent = originalPos;
     }
 
-    private void UpdateValue()
+    //Check if it is a receiver;
+    private bool CheckReceiverTag(Transform otherReceiver)
     {
-        if (parentNode.CompareTag("NumberNode") || parentNode.CompareTag("CalculationNode"))
-            number = parentNode.GetComponent<NumberNode>().value;
-        //else if(parentNode.CompareTag("BooleanNode"))
+        if (otherReceiver.CompareTag("Number") || otherReceiver.CompareTag("Boolean"))
+            return true;
+        return false;
+    }
+
+    //Change the lines color when the datatype of transmitter and receiver doesnt match
+    private void ChangeLineColor(Transform otherReceiver)
+    {
+        if (otherReceiver.tag == gameObject.tag)
+            line?.GetComponent<Line>().SwitchColor();
+    }
+
+    private void GetValueFromParent()
+    {
+        switch (parentNode.tag)
+        {
+            case "NumberNode":
+                number = parentNode.GetComponent<NumberNode>().value;
+                break;
+            case "CalculationNode":
+                number = parentNode.GetComponent<CalculationNode>().output;
+                break;
+                /* case "BooleanNode":
+                     number = parentNode.GetComponent<NumberNode>().value;*/
+                //break;
+                /*case "LogicNode":
+                    number = parentNode.GetComponent<NumberNode>().value;*/
+                break;
+            default:
+                break;
+        }
+
+
     }
 }

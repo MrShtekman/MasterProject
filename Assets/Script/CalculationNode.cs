@@ -6,7 +6,8 @@ using TMPro;
 
 public class CalculationNode : MonoBehaviour
 {
-    private int input1, input2, output = 2;
+    private int input1, input2; 
+    public int output;
     private Transform numberNode1, numberNode2;
     [SerializeField] private Transform receiver1, receiver2, transmitter;
     //[SerializeField] private MathOperation _operator = MathOperation.Multiplication;

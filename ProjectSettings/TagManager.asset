@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Receiver
-  - MathOperations
-  - ReceiveNumber
-  - ReceiveBool
-  - ReceiveCharacter
   - NumberNode
+  - Number
+  - Boolean
+  - BooleanNode
+  - LogicNode
+  - CalculationNode
   layers:
   - Default
   - TransparentFX

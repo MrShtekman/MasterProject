@@ -8,14 +8,16 @@ public class Line : MonoBehaviour
     [SerializeField] private LineRenderer line;
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
-    [SerializeField] private Color color1;
-    [SerializeField] private Color color2;
+    [SerializeField] private Color color1, color2, errorColor;
+    private Color displayColor1, displayColor2;
+    private Vector3[] positions;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         line.useWorldSpace = true;
-
+        SwitchColor();
+        positions = new Vector3[line.positionCount];
     }
 
     // Update is called once per frame
@@ -23,8 +25,8 @@ public class Line : MonoBehaviour
     {
 
 
-        var positions = new Vector3[line.positionCount];
 
+        //Creating an array of points on the line
         for (int i = 0; i < positions.Length; i++)
         {
             float percentage = i / (positions.Length - 1f);
@@ -36,6 +38,7 @@ public class Line : MonoBehaviour
         line.SetPositions(positions);
 
 
+        //Switching color using the Sin function
         var gradient = new Gradient();
         gradient.mode = GradientMode.Blend;
         var gradientColorKeys = new GradientColorKey[8];
@@ -43,9 +46,9 @@ public class Line : MonoBehaviour
         for (int i = 0; i < line.positionCount; i++)
         {
             float percentage = i / (positions.Length - 1f);
-            var test = Mathf.Sin(Time.time * 5 - i) / 2 + 0.5f;
+            var colorPercentage = Mathf.Sin(Time.time * 5 - i) / 2 + 0.5f;
 
-            GradientColorKey colorkey = new GradientColorKey(Color.Lerp(color1, color2, test), percentage);
+            GradientColorKey colorkey = new GradientColorKey(Color.Lerp(displayColor1, displayColor2, colorPercentage), percentage);
             gradientColorKeys[i] = colorkey;
 
         }
@@ -60,6 +63,21 @@ public class Line : MonoBehaviour
 
         line.colorGradient = gradient;
 
+    }
+
+    //Switching Line color
+    public void SwitchColor()
+    {
+        if (displayColor1 != errorColor)
+        {
+            displayColor1 = errorColor;
+            displayColor2 = errorColor;
+        }
+        else
+        {
+            displayColor1 = color1;
+            displayColor2 = color2;
+        }
     }
 
 }
