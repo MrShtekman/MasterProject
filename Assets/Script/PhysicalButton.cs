@@ -46,14 +46,17 @@ public class PhysicalButton : MonoBehaviour
         buttonTop.transform.localPosition = new Vector3(0, buttonTop.transform.localPosition.y, 0);
         buttonTop.transform.localEulerAngles = Vector3.zero;
 
+        //Limit button from going too far up
         if (buttonTop.localPosition.y >= 0)
             buttonTop.transform.position = new Vector3(buttonUpperLimit.position.x, buttonUpperLimit.position.y, buttonUpperLimit.position.z);
+        //Add a force up when button pressed
         else
             buttonTop.GetComponent<Rigidbody>().AddForce(buttonTop.transform.up * force * Time.fixedDeltaTime, ForceMode.VelocityChange);
-
+        //Limir button from going too far down
         if (buttonTop.localPosition.y <= buttonLowerLimit.localPosition.y)
             buttonTop.transform.position = new Vector3(buttonLowerLimit.position.x, buttonLowerLimit.position.y, buttonLowerLimit.position.z);
 
+        //determine if pressed or not
         if (Vector3.Distance(buttonTop.position, buttonLowerLimit.position) < upperLowerDiff * threshHold)
         {
             isPressed = true;

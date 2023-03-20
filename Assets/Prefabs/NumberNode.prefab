@@ -619,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d603e1a25e5c743b2fe4d7500ee478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startConnected: 0
   line: {fileID: 8766539181049289342}
   startPoint: {fileID: 8766539181049289343}
   endPoint: {fileID: 8766539182554297223}
@@ -1648,13 +1649,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8766539182106635843}
-  m_LocalRotation: {x: 0.6950299, y: -0, z: -0, w: 0.7189809}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.022}
   m_LocalScale: {x: 0.11254081, y: 0.19186418, z: 0.74560106}
   m_Children: []
   m_Father: {fileID: 8766539181986713167}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.297, y: 0.56}
@@ -2203,7 +2204,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8766539182554297220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4deb374fc1675b043946a67ba0641d0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dae21c64129d9d43aec2ec46884ee99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 8766539181049289343}
