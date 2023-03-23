@@ -7,39 +7,44 @@ using System;
 
 public class VariableNode : MiddleNode
 {
+
     private int value;
     private Transform connectedNode;
     [SerializeField] private Transform receiver, variableLabel;
     [SerializeField] private bool isBoolean;
-
+    [SerializeField] private int upperLimit, lowerLimit;
     public override event NodeAction OnValueChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateDisplay();      
+        UpdateDisplay();
     }
 
 
     public override void ConnectNode(Transform otherNode, Transform _receiver, int initialValue)
     {
-            connectedNode = otherNode;
-            connectedNode.GetComponent<BaseNode>().OnValueChanged += UpdateValue;
-            UpdateValue(initialValue);
-    
+        connectedNode = otherNode;
+        connectedNode.GetComponent<BaseNode>().OnValueChanged += UpdateValue;
+        UpdateValue(initialValue);
+
     }
 
     public override void DisconnectNode(Transform otherNode, Transform _receiver, int _value)
     {
-            connectedNode.GetComponent<BaseNode>().OnValueChanged -= UpdateValue;
-            UpdateValue(_value);             
+        connectedNode.GetComponent<BaseNode>().OnValueChanged -= UpdateValue;
+        UpdateValue(_value);
     }
 
     public void UpdateValue(int _value)
     {
-        value = _value;
-        UpdateDisplay();
-        ValueChangeEvent();
+        if (_value >= lowerLimit && _value <= upperLimit)
+        {
+            value = _value;
+            UpdateDisplay();
+            ValueChangeEvent();
+
+        }
     }
 
     public override void ValueChangeEvent()
