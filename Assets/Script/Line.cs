@@ -5,7 +5,7 @@ using UnityEngine.ProBuilder;
 
 public class Line : MonoBehaviour
 {
-    [SerializeField] private bool startConnected;
+
     [SerializeField] private LineRenderer line;
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
@@ -19,8 +19,6 @@ public class Line : MonoBehaviour
         line.useWorldSpace = true;
         //Line start with black and white
         SwitchColor();
-        if (startConnected)
-            SwitchColor();
         positions = new Vector3[line.positionCount];
     }
 

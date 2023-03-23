@@ -5,8 +5,9 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class VariableTransmitPoint : TransmitPoint
 {
-    private Transform line, parentNode, originalPos;
+    private Transform parentNode, originalPos;
     private int value;
+    [SerializeReference] Transform theLine;
 
 
     void Start()
@@ -20,7 +21,7 @@ public class VariableTransmitPoint : TransmitPoint
     //When connected, the transmitpoint will attach to the other nodes receivepoint
     public override void OnTriggerStay(Collider other)
     {
-        var targetReceiver = other.transform;
+        var targetReceiver = other?.transform;
 
         if (CheckReceiverTag(targetReceiver))
         {
@@ -33,35 +34,30 @@ public class VariableTransmitPoint : TransmitPoint
     public override void OnTriggerEnter(Collider other)
     {
 
-        var targetReceiver = other.transform;
+        var targetReceiver = other?.transform;
 
         if (CheckReceiverTag(targetReceiver))
         {
-            var otherNode = other.transform.parent.parent.GetComponent<InteractiveObject>();
+            theLine.GetComponent<Line>().SwitchColor();
+            var otherNode = targetReceiver.parent.GetComponent<InteractiveObject>();
             GetValueFromParent();
-            otherNode.Connect(parentNode, other.transform, value);
-            ChangeLineColor(targetReceiver);
+            otherNode.Connect(parentNode, targetReceiver, value);
         }
     }
 
-    //Check if it is a receiver;
+    //Check if it is a interactiveObject, if so, change the line color
     public override bool CheckReceiverTag(Transform otherReceiver)
     {
-        if (otherReceiver.CompareTag("Number") || otherReceiver.CompareTag("Boolean"))
+        if (otherReceiver.CompareTag("InteractiveObject"))
+        {
             return true;
+        }
         return false;
     }
 
-    //Change the lines color when the datatype of transmitter and receiver doesnt match
-    private void ChangeLineColor(Transform otherReceiver)
-    {
-        if (otherReceiver.tag == gameObject.tag)
-            line?.GetComponent<Line>().SwitchColor();
-    }
 
     private void GetValueFromParent()
     {
         value = parentNode.GetComponent<BaseNode>().GetValue();
-
     }
 }

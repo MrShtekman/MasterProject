@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class CalculationNode : MiddleNode
 {
     private int input1, input2; 
-    public int output;
+    [HideInInspector] public int output;
     private Transform connectedNode1, connectedNode2;
+    private string[] operations;
+    [SerializeField] private int calculationIndex;
     [SerializeField] private Transform receiver1, receiver2, transmitter;
-    //[SerializeField] private MathOperation _operator = MathOperation.Multiplication;
     [SerializeField] private Transform input1Label, input2Label, outputLabel;
+    [SerializeField] private TextMeshPro operationType, operationSymbol;
 
     public override event NodeAction OnValueChanged;
 
@@ -20,6 +23,8 @@ public class CalculationNode : MiddleNode
     {
         input1Label.GetComponent<TextMeshPro>().text = input1.ToString();
         input2Label.GetComponent<TextMeshPro>().text = input2.ToString();
+
+        ChangeLabel();
         Calculate();
     }
 
@@ -71,16 +76,74 @@ public class CalculationNode : MiddleNode
         Calculate();
     }
 
+    public void ChangeCalculation()
+    {
+        if (calculationIndex < 3)
+            calculationIndex++;
+        else
+            calculationIndex = 0;
+
+        ChangeLabel();
+
+        Calculate();
+    }
+
+    private void ChangeLabel()
+    {
+        switch (calculationIndex)
+        {
+            case 0:
+                operationType.text = "Multiply";
+                operationSymbol.text = "×";
+                break;
+            case 1:
+                operationType.text = "Divide";
+                operationSymbol.text = "/";
+                break;
+            case 2:
+                operationType.text = "Add";
+                operationSymbol.text = "+";
+                break;
+            case 3:
+                operationType.text = "Subtract";
+                operationSymbol.text = "–";
+                break;
+            default:
+                break;
+        }
+    }
+
+
     private void Calculate()
     {
-        output = input1 * input2;
+        switch (calculationIndex)
+        {
+            case 0:
+                output = input2 * input1;
+                break;
+            case 1:
+                if (input1 == 0)
+                    return;
+                else
+                    output = (int)Mathf.Round((float)input2 / (float)input1);
+                break;
+            case 2:
+                output = input2 + input1;
+                break;
+            case 3:
+                output = input2 - input1;
+                break;
+            default:
+                break;
+        }
+        
         UpdateDisplay();
-
+        ValueChangeEvent();
     }
 
     public override void UpdateDisplay()
     {
-        output = input1 * input2;
+        
         outputLabel.GetComponent<TextMeshPro>().text = output.ToString();
     }
 
@@ -93,4 +156,6 @@ public class CalculationNode : MiddleNode
     {
         OnValueChanged?.Invoke(output);
     }
+
+    
 }

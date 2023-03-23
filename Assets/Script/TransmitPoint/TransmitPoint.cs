@@ -6,8 +6,7 @@ using UnityEngine;
 public class TransmitPoint : MonoBehaviour
 {
     [SerializeField] private Transform line;
-    private Transform parentNode;
-    private Transform originalPos;
+    private Transform parentNode, originalPos;
     private int value;
 
 
@@ -35,13 +34,13 @@ public class TransmitPoint : MonoBehaviour
     public virtual void OnTriggerEnter(Collider other)
     {
         
-        var targetReceiver = other.transform;
+        var targetReceiver = other?.transform;
 
         if (CheckReceiverTag(targetReceiver))
         {
-            var otherNode = other.transform.parent.parent.GetComponent<MiddleNode>();
+            var otherNode = targetReceiver.parent.parent.GetComponent<MiddleNode>();
             GetValueFromParent();
-            otherNode.ConnectNode(parentNode, other.transform, value);
+            otherNode.ConnectNode(parentNode, targetReceiver, value);
             ChangeLineColor(targetReceiver);
         }
     }
@@ -49,12 +48,12 @@ public class TransmitPoint : MonoBehaviour
     //When disconnected, this script will tell the other node to unsubsribe from our event
     public void OnTriggerExit(Collider other)
     {
-        var targetReceiver = other.transform;
+        var targetReceiver = other?.transform;
 
         if (CheckReceiverTag(targetReceiver))
         {
-            var otherNode = other.transform.parent.parent.GetComponent<MiddleNode>();
-            otherNode.DisconnectNode(parentNode, other.transform, 0);
+            var otherNode = targetReceiver.parent.parent.GetComponent<MiddleNode>();
+            otherNode.DisconnectNode(parentNode, targetReceiver, 0);
             ChangeLineColor(targetReceiver);
         }
         transform.parent = originalPos;
@@ -77,6 +76,7 @@ public class TransmitPoint : MonoBehaviour
 
     private void GetValueFromParent()
     {
+
         value = parentNode.GetComponent<BaseNode>().GetValue();
 
     }

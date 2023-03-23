@@ -9,8 +9,7 @@ public class VariableNode : MiddleNode
 {
     private int value;
     private Transform connectedNode;
-    [SerializeField] private Transform receiver, transmitter;
-    [SerializeField] private Transform variableLabel;
+    [SerializeField] private Transform receiver, variableLabel;
     [SerializeField] private bool isBoolean;
 
     public override event NodeAction OnValueChanged;
@@ -30,18 +29,17 @@ public class VariableNode : MiddleNode
     
     }
 
-    public override void DisconnectNode(Transform otherNode, Transform _receiver, int value)
+    public override void DisconnectNode(Transform otherNode, Transform _receiver, int _value)
     {
             connectedNode.GetComponent<BaseNode>().OnValueChanged -= UpdateValue;
-            UpdateValue(value);             
+            UpdateValue(_value);             
     }
 
-    public void UpdateValue(int value)
+    public void UpdateValue(int _value)
     {
-        var input = true;
-        if (isBoolean)
-           input = Convert.ToBoolean(value);
-
+        value = _value;
+        UpdateDisplay();
+        ValueChangeEvent();
     }
 
     public override void ValueChangeEvent()

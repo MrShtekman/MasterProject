@@ -11,6 +11,8 @@ TagManager:
   - BooleanNode
   - LogicNode
   - CalculationNode
+  - InteractiveObject
+  - VariableNode
   layers:
   - Default
   - TransparentFX

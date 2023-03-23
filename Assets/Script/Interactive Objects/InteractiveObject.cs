@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class InteractiveObject : MonoBehaviour
 {
+    private Transform connectedNode;
     public abstract void DoAction(int value);
-    public abstract void Connect(Transform otherNode, Transform _receiver, int initialValue);
+
+    public virtual void Connect(Transform otherNode, Transform _receiver, int initialValue)
+    {
+        connectedNode = otherNode;
+        connectedNode.GetComponent<BaseNode>().OnValueChanged += DoAction;
+    }
 }

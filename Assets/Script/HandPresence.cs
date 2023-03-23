@@ -13,7 +13,7 @@ public class HandPresence : MonoBehaviour
 {
 
     private Animator animator;
-    private SkinnedMeshRenderer renderer;
+    private new SkinnedMeshRenderer renderer;
     [SerializeField] bool hideWhenGrab;
     [SerializeField] private ActionBasedController controller;
     [SerializeField] private XRDirectInteractor interactor;
