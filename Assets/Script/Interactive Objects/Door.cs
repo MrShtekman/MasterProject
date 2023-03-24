@@ -13,20 +13,15 @@ public class Door : InteractiveObject
     {
         StopAllCoroutines();
         if (value == password)
-        {
             StartCoroutine(OpenDoor());
-        }
         else
-        {
             StartCoroutine(CloseDoor());
-        }
     }
 
     IEnumerator OpenDoor()
     {
         while (transform.rotation.eulerAngles.y > 270)
         {
-            Debug.Log(transform.rotation.eulerAngles.y);
             transform.Rotate(0, -1, 0);
             yield return new WaitForSeconds(0.05f);
         }

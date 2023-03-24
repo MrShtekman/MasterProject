@@ -8,7 +8,7 @@ public class BooleanNode : BaseNode
 {
     [SerializeField] private bool value;
     [SerializeField] private GameObject display;
-    [SerializeField] private GameObject transmitter;
+
 
     
     public override event BaseNode.NodeAction OnValueChanged;
@@ -26,11 +26,23 @@ public class BooleanNode : BaseNode
 
     public override void UpdateDisplay()
     {
-        throw new NotImplementedException();
+        
     }
 
     public override int GetValue()
     {
         return Convert.ToInt32(value);
+    }
+
+    public void OnButtonPressed()
+    {
+        value = true;
+        ValueChangeEvent();
+    }
+
+    public void OnButtonReleased()
+    {
+        value = false;
+        ValueChangeEvent();
     }
 }
