@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : InteractiveObject
 {
-    [SerializeField] int password = 2023;
-    private int angle = -90;
+    [SerializeField] private int password = 2023;
+    [SerializeField] private Transform targetRotation;
+    private quaternion originalRotation;
 
+
+    private void Start()
+    {
+        originalRotation = transform.rotation;
+    }
 
     public override void DoAction(int value)
     {
@@ -20,19 +27,24 @@ public class Door : InteractiveObject
 
     IEnumerator OpenDoor()
     {
-        while (transform.rotation.eulerAngles.y > 270)
+
+        float progress = 0;
+        while (progress < 100)
         {
-            transform.Rotate(0, -1, 0);
-            yield return new WaitForSeconds(0.05f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation.rotation, progress / 100);
+            progress++;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 
     IEnumerator CloseDoor()
     {
-        while (transform.rotation.eulerAngles.y < 359)
+        float progress = 0;
+        while (progress < 100)
         {
-            transform.Rotate(0, 1, 0);
-            yield return new WaitForSeconds(0.05f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, progress / 100);
+            progress++;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

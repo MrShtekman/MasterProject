@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine;
 public class Gate : InteractiveObject
 {
     private Vector3 originalPos;
-    private float moveDistance = 0;
-
+    private bool open;
+    [SerializeField] private bool reverse;
     [SerializeField] private Transform destination;
     private void Start()
     {
@@ -14,8 +15,13 @@ public class Gate : InteractiveObject
     }
     public override void DoAction(int value)
     {
+        open = Convert.ToBoolean(value);
+
+        if (reverse)
+            open = !open;
+
         StopAllCoroutines();
-        if (value == 1)
+        if (open)
             StartCoroutine(Open());
         else
             StartCoroutine(Close());
@@ -24,13 +30,23 @@ public class Gate : InteractiveObject
 
     IEnumerator Open()
     {
-        transform.position = Vector3.Lerp(transform.position, destination.position, Time.deltaTime);
-        yield return new WaitForSeconds(0.05f);
+        float progress = 0;
+        while (progress < 100)
+        {
+            transform.position = Vector3.Lerp(transform.position, destination.position, progress / 100);
+            progress++;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
     IEnumerator Close()
     {
-        transform.position = Vector3.Lerp(transform.position, originalPos, Time.deltaTime);
-        yield return new WaitForSeconds(0.05f);
+        float progress = 0;
+        while (progress < 100)
+        {
+            transform.position = Vector3.Lerp(transform.position, originalPos, progress / 100);
+            progress++;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
