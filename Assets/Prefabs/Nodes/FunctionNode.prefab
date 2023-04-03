@@ -1248,7 +1248,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -1360,6 +1360,8 @@ MonoBehaviour:
   receiver: {fileID: 1976285364983307853}
   variableLabel: {fileID: 8124746034902072960}
   isBoolean: 0
+  upperLimit: 0
+  lowerLimit: 0
 --- !u!1 &8124746034902072967
 GameObject:
   m_ObjectHideFlags: 0

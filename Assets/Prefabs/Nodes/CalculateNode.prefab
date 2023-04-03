@@ -651,7 +651,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -764,7 +764,6 @@ MonoBehaviour:
   calculationIndex: 0
   receiver1: {fileID: 3859572544106816628}
   receiver2: {fileID: 3859572543395332102}
-  transmitter: {fileID: 3859572545419044984}
   input1Label: {fileID: 3859572543671935840}
   input2Label: {fileID: 3859572544612704348}
   outputLabel: {fileID: 3859572544709029960}
@@ -2345,12 +2344,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 3859572545419044965}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:

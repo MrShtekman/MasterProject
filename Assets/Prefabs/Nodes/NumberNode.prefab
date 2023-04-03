@@ -917,7 +917,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -1108,7 +1108,6 @@ MonoBehaviour:
   upperLimit: 10
   lowerLimit: -10
   display: {fileID: 8766539182534703267}
-  transmitter: {fileID: 8766539182554297220}
 --- !u!1 &8766539181976853693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,12 +1671,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 8766539182554297219}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
