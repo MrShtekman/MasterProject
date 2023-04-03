@@ -17,6 +17,6 @@ public class ColorBox : InteractiveObject
 
     public override void DoAction(int value)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

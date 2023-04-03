@@ -13,6 +13,7 @@ TagManager:
   - CalculationNode
   - InteractiveObject
   - VariableNode
+  - Collectable
   layers:
   - Default
   - TransparentFX

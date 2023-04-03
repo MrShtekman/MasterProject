@@ -7,7 +7,7 @@ public class NumberNode : BaseNode
 {
     public int value, upperLimit, lowerLimit = 0;
     [SerializeField] private GameObject display;
-    [SerializeField] private GameObject transmitter;
+
 
 
     public override event BaseNode.NodeAction OnValueChanged;

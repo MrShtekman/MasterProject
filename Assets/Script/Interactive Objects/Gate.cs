@@ -12,6 +12,7 @@ public class Gate : InteractiveObject
     private void Start()
     {
         originalPos = transform.position;
+        DoAction(0);
     }
     public override void DoAction(int value)
     {
