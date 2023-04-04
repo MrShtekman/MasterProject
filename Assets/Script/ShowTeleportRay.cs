@@ -7,11 +7,9 @@ public class ShowTeleportRay : MonoBehaviour
 {
     [SerializeField] private GameObject reticle;
     [SerializeField] private XRInteractorLineVisual teleportRay;
-    void Start()
-    {
+ 
 
-    }
-
+ 
     public void ActivateTeleportRay()
     {
         reticle.SetActive(true);
