@@ -15,6 +15,7 @@ public class BooleanNode : BaseNode
 
     void Start()
     {
+        
         display.GetComponent<TextMeshPro>().text = value.ToString();
     }
 

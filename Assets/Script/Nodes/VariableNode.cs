@@ -8,8 +8,8 @@ using System;
 public class VariableNode : MiddleNode
 {
 
-    private int value;
     private Transform connectedNode;
+    [SerializeField] private int value;
     [SerializeField] private Transform receiver, variableLabel;
     [SerializeField] private bool isBoolean;
     [SerializeField] private int upperLimit, lowerLimit;

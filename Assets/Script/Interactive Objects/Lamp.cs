@@ -10,6 +10,7 @@ public class Lamp : InteractiveObject
 
     public override void DoAction(int value)
     {
+
         lightSource.enabled = Convert.ToBoolean(value);
 
     }

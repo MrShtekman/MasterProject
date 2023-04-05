@@ -11,5 +11,6 @@ public abstract class InteractiveObject : MonoBehaviour
     {
         connectedNode = otherNode;
         connectedNode.GetComponent<BaseNode>().OnValueChanged += DoAction;
+        DoAction(initialValue);
     }
 }

@@ -20,7 +20,7 @@ public class Box : InteractiveObject
     public override void DoAction(int value)
     {
         isKinematic = Convert.ToBoolean(value);
-        Debug.Log("DoAction: " + isKinematic);
+
         MakeKinematic(isKinematic);
     }
 
