@@ -282,39 +282,6 @@
             ],
             "bindings": [
                 {
-                    "name": "One Modifier",
-                    "id": "92405b64-0c69-4cd1-b472-bd2cff2d1c92",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "10350666-91e3-4756-b09d-6c29e953dfc8",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "052fbf7d-4fbb-48f5-ae4a-60e6ea54de2c",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "49a23327-a116-48c0-8af9-0d2c50c15a88",
                     "path": "<XRController>{LeftHand}/grip",
@@ -478,6 +445,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dec7edf4-da7a-4d64-b061-115cf2f2a299",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -954,37 +932,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "One Modifier",
-                    "id": "cae540b8-ea87-49d3-9e50-6873fa03b702",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "b6226266-ec77-4735-8f64-6a40b1de7375",
-                    "path": "<XRController>{RightHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "804571a5-3a31-41ea-a723-1ffa7831bccc",
+                    "name": "",
+                    "id": "030bc51a-f594-4211-a1c7-2a2d8bac062e",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Select",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         },

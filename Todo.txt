@@ -1,5 +1,0 @@
-1. make buttons and weights smaller
-2. fix the teleportation box collider
-3. some nodes are too high up
-4. change all grabble things to grabbable layer
-5. update boxes

@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Box : InteractiveObject
 {
-    private bool isKinematic;
     [SerializeField] private Material kinematicMaterial, normalMaterial;
+    private bool isKinematic;
     private Rigidbody rigidBody;
 
     private void Start()
@@ -44,5 +45,14 @@ public class Box : InteractiveObject
             GetComponent<Renderer>().material = normalMaterial;
     }
 
+    public void Teleportable()
+    {
+        GetComponent<TeleportationArea>().enabled = true;
+    }
+
+    public void NotTeleportable()
+    {
+        GetComponent<TeleportationArea>().enabled = false;
+    }
    
 }

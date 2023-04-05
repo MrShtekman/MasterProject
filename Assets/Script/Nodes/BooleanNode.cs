@@ -26,7 +26,7 @@ public class BooleanNode : BaseNode
 
     public override void UpdateDisplay()
     {
-        
+        display.GetComponent<TextMeshPro>().text = Convert.ToString(value);
     }
 
     public override int GetValue()
@@ -44,5 +44,12 @@ public class BooleanNode : BaseNode
     {
         value = false;
         ValueChangeEvent();
+    }
+
+    public void Toggle()
+    {
+        value = !value;
+        ValueChangeEvent();
+        UpdateDisplay();
     }
 }

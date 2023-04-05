@@ -1030,7 +1030,7 @@ MonoBehaviour:
   buttonLowerLimit: {fileID: 6636023829528553903}
   buttonUpperLimit: {fileID: 6636023831533111268}
   threshHold: 0.5
-  force: 5
+  force: 20
   onPressed:
     m_PersistentCalls:
       m_Calls:

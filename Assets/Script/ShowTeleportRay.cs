@@ -20,5 +20,6 @@ public class ShowTeleportRay : MonoBehaviour
     {
         reticle.SetActive(false);
         teleportRay.enabled = false;
+
     }
 }

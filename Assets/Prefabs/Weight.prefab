@@ -256,13 +256,37 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7246485950859349454}
+        m_TargetAssemblyTypeName: Box, Assembly-CSharp
+        m_MethodName: NotTeleportable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7246485950859349454}
         m_TargetAssemblyTypeName: Box, Assembly-CSharp
         m_MethodName: OnRelease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7246485950859349454}
+        m_TargetAssemblyTypeName: Box, Assembly-CSharp
+        m_MethodName: Teleportable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -354,5 +378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf488ee6341ffa243ab7d8dcf0284a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TeleportBox: {fileID: 7535409512463012329}
   kinematicMaterial: {fileID: 2100000, guid: 61b2a426e69966d47989d551334ba71e, type: 2}
   normalMaterial: {fileID: 2100000, guid: 061b99e3dd10f814ba4326ce134a4cb2, type: 2}

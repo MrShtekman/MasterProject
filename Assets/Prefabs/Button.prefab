@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7556991917853637611
 Transform:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
   buttonLowerLimit: {fileID: 7556991916711909522}
   buttonUpperLimit: {fileID: 7556991917281324101}
   threshHold: 0.5
-  force: 10
+  force: 20
   onPressed:
     m_PersistentCalls:
       m_Calls:
