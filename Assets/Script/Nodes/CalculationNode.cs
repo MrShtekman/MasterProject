@@ -16,6 +16,7 @@ public class CalculationNode : MiddleNode
     [SerializeField] private Transform input1Label, input2Label, outputLabel;
     [SerializeField] private TextMeshPro operationType, operationSymbol;
 
+
     public override event NodeAction OnValueChanged;
 
     // Start is called before the first frame update
@@ -45,6 +46,8 @@ public class CalculationNode : MiddleNode
             connectedNode2.GetComponent<BaseNode>().OnValueChanged += UpdateInput2;
             UpdateInput2(initialValue);
         }
+
+        
     }
 
     public override void DisconnectNode(Transform otherNode, Transform _receiver, int value)
@@ -52,13 +55,17 @@ public class CalculationNode : MiddleNode
         if (connectedNode1 == otherNode)
         {           
             connectedNode1.GetComponent<BaseNode>().OnValueChanged -= UpdateInput1;
+            connectedNode1 = null;
             UpdateInput1(value);
         }
         else if (connectedNode2 == otherNode)
         {       
             connectedNode2.GetComponent<BaseNode>().OnValueChanged -= UpdateInput2;
+            connectedNode1 = null;
             UpdateInput2(value);
         }
+
+        
     }
 
     public void UpdateInput1(int value)

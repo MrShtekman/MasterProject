@@ -27,13 +27,14 @@ public class VariableNode : MiddleNode
         connectedNode = otherNode;
         connectedNode.GetComponent<BaseNode>().OnValueChanged += UpdateValue;
         UpdateValue(initialValue);
-
+        taken = true;
     }
 
     public override void DisconnectNode(Transform otherNode, Transform _receiver, int _value)
     {
         connectedNode.GetComponent<BaseNode>().OnValueChanged -= UpdateValue;
         UpdateValue(_value);
+        taken = false;
     }
 
     public void UpdateValue(int _value)

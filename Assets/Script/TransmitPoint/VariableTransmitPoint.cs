@@ -55,6 +55,11 @@ public class VariableTransmitPoint : TransmitPoint
         return false;
     }
 
+    public override void OnTriggerExit(Collider other)
+    {
+       
+    }
+
 
     private void GetValueFromParent()
     {

@@ -82,4 +82,16 @@ public class Line : MonoBehaviour
         }
     }
 
+    public void ErrorColor()
+    {
+        displayColor1 = errorColor;
+        displayColor2 = errorColor;
+    }
+
+    public void NormalColor()
+    {
+        displayColor1 = color1;
+        displayColor2 = color2;
+    }
+
 }

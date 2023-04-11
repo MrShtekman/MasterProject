@@ -26,7 +26,7 @@ public class SplitNode : MiddleNode
             connectedNode = otherNode;
             connectedNode.GetComponent<BaseNode>().OnValueChanged += UpdateInput;
             UpdateInput(initialValue);
-
+            taken = true;
 
     }
 
@@ -35,7 +35,7 @@ public class SplitNode : MiddleNode
  
             connectedNode.GetComponent<BaseNode>().OnValueChanged -= UpdateInput;
             UpdateInput(value);
-
+            taken = false;
    }
 
     public void UpdateInput(int value)

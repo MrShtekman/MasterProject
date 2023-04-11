@@ -6,6 +6,8 @@ using UnityEngine;
 public class TransmitPoint : MonoBehaviour
 {
     [SerializeField] private Transform line;
+    [SerializeField] private bool taken;
+    [SerializeField] private Transform connecteNode;
     private Transform parentNode, originalPos;
     private int value;
 
@@ -23,7 +25,7 @@ public class TransmitPoint : MonoBehaviour
     {
         var targetReceiver = other.transform;
 
-        if (CheckReceiverTag(targetReceiver))
+        if (targetReceiver.parent.parent == connecteNode/*CheckReceiverTag(targetReceiver)*/)
         {
             transform.parent = targetReceiver;
             transform.position = targetReceiver.position;
@@ -33,20 +35,26 @@ public class TransmitPoint : MonoBehaviour
     //When first connected, this script will call the other nodes connectNode function and subsribe to our event
     public virtual void OnTriggerEnter(Collider other)
     {
-        
+
         var targetReceiver = other?.transform;
 
-        if (CheckReceiverTag(targetReceiver))
+        if (CheckReceiverTag(targetReceiver) && !taken)
         {
             var otherNode = targetReceiver.parent.parent.GetComponent<MiddleNode>();
-            GetValueFromParent();
-            otherNode.ConnectNode(parentNode, targetReceiver, value);
-            ChangeLineColor(targetReceiver);
+            if (!otherNode.taken)
+            {
+                GetValueFromParent();
+                otherNode.ConnectNode(parentNode, targetReceiver, value);
+                ChangeLineColor(targetReceiver);
+                connecteNode = targetReceiver.parent.parent;
+                taken = true;
+
+            }
         }
     }
 
     //When disconnected, this script will tell the other node to unsubsribe from our event
-    public void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
         var targetReceiver = other?.transform;
 
@@ -54,7 +62,9 @@ public class TransmitPoint : MonoBehaviour
         {
             var otherNode = targetReceiver.parent.parent.GetComponent<MiddleNode>();
             otherNode.DisconnectNode(parentNode, targetReceiver, 0);
-            ChangeLineColor(targetReceiver);
+            line?.GetComponent<Line>().ErrorColor();
+            connecteNode = null;
+            taken = false;
         }
         transform.parent = originalPos;
     }
@@ -62,7 +72,9 @@ public class TransmitPoint : MonoBehaviour
     //Check if it is a receiver;
     public virtual bool CheckReceiverTag(Transform otherReceiver)
     {
-        if (otherReceiver.CompareTag("Number") || otherReceiver.CompareTag("Boolean"))
+        if (otherReceiver.GetComponent<TransmitPoint>() != null)
+            return false;
+        if (otherReceiver.tag == gameObject.tag)
             return true;
         return false;
     }
@@ -70,8 +82,9 @@ public class TransmitPoint : MonoBehaviour
     //Change the lines color when the datatype of transmitter and receiver doesnt match
     private void ChangeLineColor(Transform otherReceiver)
     {
-        if (otherReceiver.tag == gameObject.tag)
+        //if (otherReceiver.tag == gameObject.tag)
             line?.GetComponent<Line>().SwitchColor();
+
     }
 
     private void GetValueFromParent()
