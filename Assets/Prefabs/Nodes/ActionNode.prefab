@@ -98,7 +98,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Function
+  m_text: Action
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20d9640ea99918344b0ed7e9b8e1eac5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 20d9640ea99918344b0ed7e9b8e1eac5, type: 2}
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 1976285365947362197}
   - component: {fileID: 1976285365947362212}
   m_Layer: 0
-  m_Name: FunctionNode
+  m_Name: ActionNode
   m_TagString: BooleanNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1357,6 +1357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb17f37b5db3244cb45770f6e4f0e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
   receiver: {fileID: 1976285364983307853}
   variableLabel: {fileID: 8124746034902072960}
   isBoolean: 0

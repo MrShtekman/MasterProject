@@ -81,10 +81,10 @@ public class LogicNode : MiddleNode
         switch (_operation.ToString())
         {
             case "And":
-                operationType.text = "And";
+                operationType.text = "AND";
                 break;
             case "Or":
-                operationType.text = "Or";
+                operationType.text = "OR";
                 break;
             default:
                 break;
